@@ -1,5 +1,6 @@
 package com.hspedu.qqclient.view;
 
+import com.hspedu.qqclient.service.FileClientService;
 import com.hspedu.qqclient.service.MessageClientService;
 import com.hspedu.qqclient.service.UserClientService;
 import com.hspedu.qqclient.view.utils.Utility;
@@ -7,16 +8,18 @@ import com.hspedu.qqclient.view.utils.Utility;
 /**
  * @author Zhang Yu
  * @version 1.0
+ * 界面
  */
-public class QQView2 {
+public class QQView {
 
     private boolean loop = true;//控制是否显示菜单
     private String key = "";//接收用户的输入
     private UserClientService userClientService = new UserClientService();
     private MessageClientService messageClientService = new MessageClientService();//对象用户私聊/群聊
+    private FileClientService fileClientService = new FileClientService();//该文件用于传输
 
     public static void main(String[] args) {
-        new QQView2().mainMenu();
+        new QQView().mainMenu();
         System.out.println("客户端退出系统...");
     }
 
@@ -55,23 +58,29 @@ public class QQView2 {
                             switch (key) {
                                 case "1":
                                     userClientService.onlineFriendList();
-                                    System.out.println("显示在线用户列表");
+                                    System.out.print("显示在线用户列表");
                                     break;
                                 case "2":
-                                    System.out.println("请输入想对大家说的话：");
+                                    System.out.print("请输入想对大家说的话：");
                                     String s = Utility.readString(100);
                                     messageClientService.sendMessageToAll(s, userId);
                                     break;
                                 case "3":
-                                    System.out.println("请输入想聊天的用户号（在线）");
+                                    System.out.print("请输入想聊天的用户号（在线）");
                                     String getterId = Utility.readString(50);
-                                    System.out.println("请输入想说的话：");
+                                    System.out.print("请输入想说的话：");
                                     String content = Utility.readString(100);
                                     //输入一个方法，将消息发送给服务端
                                     messageClientService.sendMessageToOne(content, userId, getterId);
                                     break;
                                 case "4":
-                                    System.out.println("发送文件");
+                                    System.out.print("请输入你想把文件发送给的用户（在线用户): ");
+                                    getterId = Utility.readString(50);
+                                    System.out.print("请输入发送文件的路径（形式 d:\\xx.jpg): ");
+                                    String src = Utility.readString(50);
+                                    System.out.print("请输入把文件发送到对应的路径（形式 d:\\yy.jpg): ");
+                                    String dest = Utility.readString(100);
+                                    fileClientService.sendFileToOne(src, dest, userId, getterId);
                                     break;
                                 case "9":
                                     userClientService.logout();

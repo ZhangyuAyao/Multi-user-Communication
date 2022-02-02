@@ -16,5 +16,6 @@ public interface MessageType {
     String MESSAGE_CLIENT_EXIT = "6";//客户端请求退出
     String MESSAGE_TO_ALL_MES = "7";//群发的消息
     String MESSAGE_FILE_MES = "8";//文件
+    String MESSAGE_FILE_PATH = "9";//客户端存储文件的路径
 
 }

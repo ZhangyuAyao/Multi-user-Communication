@@ -55,6 +55,7 @@ public class QQServer {
             System.out.println("服务端在9999端口监听...");
             ss = new ServerSocket(9999);
 
+            new Thread(new SendNewsToAllService()).start();
             while (true) { //当和某个客户端建立连接后，会继续监听，因此while
                 Socket socket = ss.accept();//如果没有客户端连接，就会阻塞在这里
                 //得到socket 关联的对象输入流

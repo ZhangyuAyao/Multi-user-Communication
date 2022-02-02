@@ -10,7 +10,7 @@ import com.hspedu.qqclient.view.utils.Utility;
  * @version 1.0
  * 界面
  */
-public class QQView {
+public class QQView3 {
 
     private boolean loop = true;//控制是否显示菜单
     private String key = "";//接收用户的输入
@@ -19,7 +19,7 @@ public class QQView {
     private FileClientService fileClientService = new FileClientService();//该文件用于传输
 
     public static void main(String[] args) {
-        new QQView().mainMenu();
+        new QQView3().mainMenu();
         System.out.println("客户端退出系统...");
     }
 

@@ -1,5 +1,6 @@
 package com.hspedu.qqclient.service;
 
+import com.hspedu.qqclient.view.utils.Utility;
 import com.hspedu.qqcommon.Message;
 import com.hspedu.qqcommon.MessageType;
 
@@ -11,6 +12,7 @@ import java.net.Socket;
 /**
  * @author Zhang Yu
  * @version 1.0
+ * 接收message
  */
 public class ClientConnectServerThread extends Thread {
     //该线程需要持有Socket
@@ -49,7 +51,7 @@ public class ClientConnectServerThread extends Thread {
                     System.out.println("\n" + message.getSender() + " 对大家说：" + message.getContent());
                 } else if (message.getMesType().equals(MessageType.MESSAGE_FILE_MES)) {
                     System.out.println("\n" + message.getSender() + " 给 " + message.getGetter()
-                                        + " 发文件：" + message.getSrc() + " 到我的电脑的目录 " + message.getDest());
+                                        + " 发文件：" + message.getSrc() + " 到我的电脑的目录 ");
                     //取出 message 的文件字节数组，通过文件输出流写出到磁盘
                     FileOutputStream fileOutputStream = new FileOutputStream(message.getDest());
                     fileOutputStream.write(message.getFileBytes());

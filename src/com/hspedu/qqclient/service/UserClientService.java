@@ -41,8 +41,6 @@ public class UserClientService {
             Message ms = (Message) ois.readObject();
 
             if(ms.getMesType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {//登录ok
-
-
                 //创建一个和服务器端保持通信的线程-> 创建一个类 ClientConnectServerThread
                 //等待..
                 ClientConnectServerThread clientConnectServerThread = new ClientConnectServerThread(socket);
